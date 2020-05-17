@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>
+    NEW PRODUCT
+</h3>
+<form class="form-inline my-2 my-lg-0" method="POST">{% csrf_token %}
+    <table class="table">
+        <tr>
+            <td>PRODUCT NAME</td>
+            <td><input class="form-control mr-sm-2" type="text" name="name"></td>
+            <td>QUANTITY</td>
+            <td><input class="form-control mr-sm-2" type="number" name="qty" ></td>
+        </tr>
+        <tr>
+            <td>DETAILS</td>
+            <td><input class="form-control mr-sm-2" type="text" name="details"></td>
+            <td>PRICE</td>
+            <td><input class="form-control mr-sm-2" type="number" name="price"></td>
+        </tr>
+      <tr>
+        <td>DATE ADDED</td>
+        <td><input class="form-control mr-sm-2" type="text" name="add_date" id="inputDate" readonly></td>
+        <td></td>
+        <td>
+          <center>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add Item</button>
+          </center>
+        </td>
+      </tr>
+    </table>
+
+    
+
+    <!-- <div><h1>DOUBLE CHECK!!!</h1></div> -->
+    
+</form>
+
+<h3 class="mt-5">
+  PRODUCTS LIST
+</h3>
+{% if all_items %}
+	<table class="table">
+        <tr>
+            <th>NAME</th>
+            <th>QUANTITY</th>
+            <th>PRICE</th>
+            <th><center>ACTION</center></th>
+        </tr>
+		{% for things in all_items %}
+		<tr>
+            <td>{{ things.name }}</td>
+            <td>{{ things.qty }}</td>
+            <td>{{ things.price }}</td>
+            <td>
+                <center>
+                    <a href="{% url 'view' things.id %}"><button type="button" class="btn btn-primary">View</button></a>
+                    <a href="{% url 'edit' things.id %}"><button type="button" class="btn btn-info">Edit</button></a>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#prompt{{things.id}}">Delete</button>
+                    <div class="modal fade" id="prompt{{things.id}}" tabindex="-1" role="dialog" aria-labelledby="prompt" aria-hidden="true"b>
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="prompt">Delete Item</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to delete  {{ things.name }}?
+                          </div>
+                          <div class="modal-footer">
+                            <a href="{% url 'delete' things.id %}"><button type="button" class="btn btn-primary">Yes</button></a>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </center>
+                
+            </td>
+            
+    </tr>
+    
+		 {% endfor %}
+  </table>
+  
+{% endif %}
+{% endblock %}
+
+
+<!-- Button trigger modal
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+  </button>
+  
+   Modal
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>
+    DETAILS
+</h3>
+
+
+<div class="w-75 h-75mt-3 border border-secondary mx-auto">
+    <table class="table">
+        <tr>
+            <td>Product Name: </td>
+            <td>{{name}}</td>
+        </tr>
+        <tr>
+            <td>Details:</td>
+            <td>{{details}}</td>
+        </tr>
+        <tr>
+            <td>Quantity:</td>
+            <td>{{qty}}</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>{{price}}</td>
+        </tr>
+        <tr>
+            <td>Date Added:</td>
+            <td>{{add_date}}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

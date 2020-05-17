@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Modifying Product {{ product_id }}'s details</h1>
+    <form class="form-inline my-2 my-lg-0" method="POST">{% csrf_token %}
+        <table>
+            <tr>
+                <td>NAME: </td>
+                <td><input class="form-control mr-sm-2" type="text" name="name" value="{{ product_item.name }}"></td>
+            </tr>
+            <tr>
+                <td>DETAILS: </td>
+                <td><input class="form-control mr-sm-2" type="text" name="details" value="{{ product_item.details }}"></td>
+            </tr>
+            <tr>
+                <td>QUANTITY: </td>
+                <td><input class="form-control mr-sm-2" type="number" name="qty" value="{{ product_item.qty }}"></td>
+            </tr>
+            <tr>
+                <td>PRICE: </td>
+                <td><input class="form-control mr-sm-2" type="number" name="price" value="{{ product_item.price }}"></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Save Changes</button></td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}
+
+
+
+
